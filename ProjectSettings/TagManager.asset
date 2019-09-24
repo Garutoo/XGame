@@ -47,6 +47,9 @@ TagManager:
   - name: Tilemap
     uniqueID: 2829017673
     locked: 0
+  - name: Bullets
+    uniqueID: 3229135645
+    locked: 0
   - name: Player
     uniqueID: 552252297
     locked: 0

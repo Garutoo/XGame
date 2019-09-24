@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: baab65a814367d84ab298f13e147ca7f
+guid: b6cab6ffe26f05d498ab396285f23140
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 7498742078613015901
-    second: Xayoo Walking Animation_0
-  - first:
-      213: 938079812030861129
-    second: Xayoo Walking Animation_1
-  - first:
-      213: -3165448505776722831
-    second: Xayoo Walking Animation_2
-  - first:
-      213: -6340014512584745543
-    second: Xayoo Walking Animation_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -52,12 +40,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,91 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Xayoo Walking Animation_0
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 615
-        width: 270
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bbdf7ba8c827e54eacb2226c146889d
-      internalID: 7498742078613015901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xayoo Walking Animation_1
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 615
-        width: 270
-        height: 570
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8d257989f5fbd84b8392153e448505c
-      internalID: 938079812030861129
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xayoo Walking Animation_2
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 15
-        width: 270
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d396ed4abe16a24f96f84a4991a24d4
-      internalID: -3165448505776722831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xayoo Walking Animation_3
-      rect:
-        serializedVersion: 2
-        x: 765
-        y: 15
-        width: 270
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a93e0662a3937124f9ef6e82de28c837
-      internalID: -6340014512584745543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
