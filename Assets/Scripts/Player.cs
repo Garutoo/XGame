@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpSpeed = 400;
     [SerializeField] GameObject gun, pogChamp, virtualCamera;
     [SerializeField] GameObject deathCanvas;
+    Vector2 deathPos = new Vector2(4, -10);
     float dirX;
     public static bool isEnabledCanvasOfDeath = false;
     public bool faceRight = true;
@@ -121,7 +122,9 @@ public class Player : MonoBehaviour
     IEnumerator WaitToLoadDeath()
     {
         yield return new WaitForSeconds(0.5f);
+        canMove = false;
         virtualCamera.SetActive(false);
+        transform.position = deathPos;
         Camera.main.transform.position = defaultCameraPosition;
         isEnabledCanvasOfDeath = true;
         deathCanvas.SetActive(true);
