@@ -3,6 +3,7 @@
 public class Pogchamp : MonoBehaviour
 {
     [SerializeField] float speed = 1.5f;
+    public int damageHater = 1;
     bool canLeft = true;
     bool canRight = true;
     bool still = false;
@@ -16,13 +17,6 @@ public class Pogchamp : MonoBehaviour
     void Update()
     {
         Moving();
-        Damager();
-    }
-
-    private void Damager()
-    {
-        if (CompareTag("Hejter"))
-            Debug.Log("Collided");
     }
 
     void Moving()

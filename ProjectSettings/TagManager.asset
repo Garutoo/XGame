@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hejter
+  - Pog
   layers:
   - Default
   - TransparentFX
@@ -13,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Post Processing
+  - Background
+  - Player
   - 
   - 
   - 
@@ -50,6 +52,9 @@ TagManager:
   - name: Bullets
     uniqueID: 3229135645
     locked: 0
-  - name: Player
+  - name: Hate
+    uniqueID: 2382391135
+    locked: 0
+  - name: Foreground
     uniqueID: 552252297
     locked: 0

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7773911118622536314}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 7773911118622536257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.46, y: -2.8, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_Children:
   - {fileID: 438168612}
   m_Father: {fileID: 0}
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 552252297
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -4806939038133830954, guid: 482f8d0b5c05cf24180477017e1e898c,
     type: 3}
@@ -131,10 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   jumpSpeed: 400
-  gun: {fileID: 0}
-  pogChamp: {fileID: 0}
+  gun: {fileID: 438168611}
+  pogChamp: {fileID: 5578928098493800446, guid: e09397c8dcdf78d4ba5bbcfda8f07a8d,
+    type: 3}
   faceRight: 1
-  health: 10
+  health: 5
+  timeBetweenShots: 0.5
 --- !u!61 &7773911118622536261
 BoxCollider2D:
   m_ObjectHideFlags: 0

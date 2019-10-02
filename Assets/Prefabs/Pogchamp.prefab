@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 654684894484163621}
   m_Layer: 0
   m_Name: Pogchamp
-  m_TagString: Untagged
+  m_TagString: Pog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  damageHater: 1
 --- !u!50 &654684894484163621
 Rigidbody2D:
   serializedVersion: 4
