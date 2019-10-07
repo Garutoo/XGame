@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     #region Variables
     [SerializeField] GameObject gun, pogChamp, virtualCamera;
     [SerializeField] GameObject deathCanvas, healthCanvas;
-    [SerializeField] GameObject[] powerUpButtons;
+    [SerializeField] Animator[] powerUpButtons;
     [SerializeField] TextMeshProUGUI healthText;
     Vector2 deathPos = new Vector2(4, -10);
     Vector3 offset = new Vector3(0, 0, 335);
@@ -20,14 +20,16 @@ public class PlayerController : MonoBehaviour
     bool canOpenDoor = false;
     public static bool canOpen = false;
     public static bool canOpenDoorBool = false;
+    public bool canPowerUp = true;
+    public static int killCount;
     bool canMove = true;
     bool oneTime;
 
     #region Variables For Power Ups
     public float timeBetweenShots = 0.5f;
     public int health = 2;
-    [SerializeField] float jumpSpeed = 400;
-    [SerializeField] float moveSpeed;
+    public float jumpSpeed = 400;
+    public float moveSpeed;
     public int hejterDamage = 1;
     #endregion
 
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        canPowerUp = true;
         isEnabledCanvasOfDeath = false;
         deathCanvas.SetActive(false);
         oneTime = true;
@@ -50,6 +53,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        #region ButtonsManager
+        if (canPowerUp)
+        {
+            foreach (Animator button in powerUpButtons)
+            {
+                button.SetBool("anim", true);
+            }
+        }
+        #endregion
         #region HealthTextUpdate
         healthText.text = health.ToString();
         #endregion

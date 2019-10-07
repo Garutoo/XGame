@@ -23,8 +23,11 @@ public class Hejter : MonoBehaviour
     bool canShoot = true;
     bool canMove = true;
     float distance;
+    int damageForHejter;
+    PlayerController player;
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         transform.position = waypoint1.transform.position;
         target = GameObject.FindGameObjectWithTag("Player");
     }
@@ -33,7 +36,8 @@ public class Hejter : MonoBehaviour
         if (other.CompareTag("Pog"))
         {
             GetComponent<Animator>().SetTrigger("Damage");
-            health -= other.GetComponent<Pogchamp>().damageHater;
+            health -= damageForHejter;
+            Debug.Log(health);
         }
 
         else if (other.CompareTag("Player"))
@@ -145,10 +149,16 @@ public class Hejter : MonoBehaviour
         #region Death
         if (health <= 0)
         {
+            PlayerController.killCount++;
             ParticleSystem deathParticleGO = Instantiate(deathParticle, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
         }
         #endregion
+    }
+
+    private void LateUpdate()
+    {
+        damageForHejter = player.hejterDamage;
     }
 
     IEnumerator CheckDistance()
