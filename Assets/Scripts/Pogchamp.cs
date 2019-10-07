@@ -8,10 +8,10 @@ public class Pogchamp : MonoBehaviour
     bool canRight = true;
     bool still = false;
 
-    Player player;
+    PlayerController player;
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     void Update()

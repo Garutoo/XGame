@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hejter
   - Pog
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -49,11 +50,14 @@ TagManager:
   - name: Tilemap
     uniqueID: 2829017673
     locked: 0
+  - name: Hate
+    uniqueID: 2382391135
+    locked: 0
   - name: Bullets
     uniqueID: 3229135645
     locked: 0
-  - name: Hate
-    uniqueID: 2382391135
+  - name: Door
+    uniqueID: 1328874909
     locked: 0
   - name: Foreground
     uniqueID: 552252297

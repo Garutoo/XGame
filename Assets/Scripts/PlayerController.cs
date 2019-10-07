@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] float moveSpeed;
@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject gun, pogChamp, virtualCamera;
     [SerializeField] GameObject deathCanvas;
     Vector2 deathPos = new Vector2(4, -10);
+    Vector3 offset = new Vector3(0, 0, 335);
     float dirX;
     public static bool isEnabledCanvasOfDeath = false;
     public bool faceRight = true;
@@ -17,6 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 defaultCameraPosition;
     public int health = 2;
     public float timeBetweenShots = 0.5f;
+    bool canOpenDoor = false;
+    public static bool canOpen = false;
+    public static bool canOpenDoorBool = false;
     bool canMove = true;
     bool oneTime;
     #endregion
@@ -38,6 +42,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (canOpenDoor)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                canOpenDoorBool = true;
+                canOpenDoor = false;
+            }
+        }
+
         #region Death
         if (health <= 0 && oneTime)
         {
@@ -119,10 +132,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator WaitToLoadDeath()
+    public IEnumerator WaitToLoadDeath()
     {
-        yield return new WaitForSeconds(0.5f);
         canMove = false;
+        yield return new WaitForSeconds(0.5f);
         virtualCamera.SetActive(false);
         transform.position = deathPos;
         Camera.main.transform.position = defaultCameraPosition;
@@ -133,6 +146,25 @@ public class Player : MonoBehaviour
     public void DamagePlayer(int damage)
     {
         health -= damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            canOpenDoor = true;
+            canOpen = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            canOpen = false;
+            canOpenDoor = false;
+            canOpenDoorBool = false;
+        }
     }
 
 }

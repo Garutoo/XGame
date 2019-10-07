@@ -5,24 +5,52 @@ public class JX : MonoBehaviour
 {
     [SerializeField] float speed = 6f;
     public static bool canMove = true;
+    [SerializeField] ParticleSystem boom;
+    bool isRight;
 
     void Start()
     {
+        isRight = Hejter.isRight;
         StartCoroutine(TimeToDeath());
     }
 
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        if (isRight)
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        else if (!isRight)
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().DamagePlayer(GameObject.FindGameObjectWithTag("Hejter").GetComponent<Hejter>().damageForThePlayer);
-            Debug.Log(other.GetComponent<Player>().health);
+            DamageColoChanger();
+            try
+            {
+                other.GetComponent<PlayerController>().DamagePlayer(GameObject.FindGameObjectWithTag("Hejter").GetComponent<Hejter>().damageForThePlayer);
+
+            }
+            catch
+            {
+                Destroy(gameObject);
+            }
+            Debug.Log(other.GetComponent<PlayerController>().health);
+            StartCoroutine(DestroyJX());
         }
+    }
+
+    IEnumerator DestroyJX()
+    {
+        boom.Play();
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+
+    }
+    private void DamageColoChanger()
+    {
+        FindObjectOfType<PlayerController>().GetComponent<Animator>().SetTrigger("Damage");
     }
 
     IEnumerator TimeToDeath()

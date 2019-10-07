@@ -19,10 +19,21 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadNextSceneRoutine());
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadScene("Main Menu"));
+    }
+
     public void QuitGame()
     {
         Application.Quit();
     }
+
     public void LoadFirstLevelFromMainMenu()
     {
         foreach (GameObject button in buttons)
@@ -31,6 +42,11 @@ public class SceneLoader : MonoBehaviour
             buttonAnimator.SetTrigger("end");
         }
 
+        StartCoroutine(LoadScene("Tutorial"));
+    }
+
+    public void LoadFirstLevel()
+    {
         StartCoroutine(LoadScene("Level 1"));
     }
 
