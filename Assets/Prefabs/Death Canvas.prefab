@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9936446, g: 1, b: 0.3726415, a: 1}
-    m_PressedColor: {r: 1, g: 0.98372346, b: 0.6556604, a: 1}
+    m_HighlightedColor: {r: 0.9994678, g: 1, b: 0.5801887, a: 1}
+    m_PressedColor: {r: 0.75427663, g: 0.7735849, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -492,8 +492,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
@@ -516,7 +516,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2092
   m_TargetDisplay: 0
 --- !u!114 &4709772096664294662
 MonoBehaviour:
@@ -590,6 +590,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsToWait: 3
   lights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   xayooAnim: {fileID: 0}
@@ -861,8 +866,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.99215686, g: 1, b: 0.37254903, a: 1}
-    m_PressedColor: {r: 1, g: 0.9843137, b: 0.654902, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 0.5803922, a: 1}
+    m_PressedColor: {r: 0.7529412, g: 0.77254903, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1

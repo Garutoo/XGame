@@ -17,6 +17,7 @@ public class Pogchamp : MonoBehaviour
     void Update()
     {
         Moving();
+        damageHater = player.hejterDamage;
     }
 
     void Moving()

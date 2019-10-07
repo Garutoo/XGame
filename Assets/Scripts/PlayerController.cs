@@ -1,13 +1,14 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     #region Variables
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpSpeed = 400;
     [SerializeField] GameObject gun, pogChamp, virtualCamera;
-    [SerializeField] GameObject deathCanvas;
+    [SerializeField] GameObject deathCanvas, healthCanvas;
+    [SerializeField] GameObject[] powerUpButtons;
+    [SerializeField] TextMeshProUGUI healthText;
     Vector2 deathPos = new Vector2(4, -10);
     Vector3 offset = new Vector3(0, 0, 335);
     float dirX;
@@ -16,13 +17,20 @@ public class PlayerController : MonoBehaviour
     bool hasWaited = true;
     Vector3 localScale;
     [SerializeField] Vector3 defaultCameraPosition;
-    public int health = 2;
-    public float timeBetweenShots = 0.5f;
     bool canOpenDoor = false;
     public static bool canOpen = false;
     public static bool canOpenDoorBool = false;
     bool canMove = true;
     bool oneTime;
+
+    #region Variables For Power Ups
+    public float timeBetweenShots = 0.5f;
+    public int health = 2;
+    [SerializeField] float jumpSpeed = 400;
+    [SerializeField] float moveSpeed;
+    public int hejterDamage = 1;
+    #endregion
+
     #endregion
     #region Cached Referance
     Rigidbody2D myRigidbody2D;
@@ -42,6 +50,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        #region HealthTextUpdate
+        healthText.text = health.ToString();
+        #endregion
+        #region Door Technique
         if (canOpenDoor)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -50,7 +62,7 @@ public class PlayerController : MonoBehaviour
                 canOpenDoor = false;
             }
         }
-
+        #endregion
         #region Death
         if (health <= 0 && oneTime)
         {
@@ -81,6 +93,7 @@ public class PlayerController : MonoBehaviour
         #endregion
     }
 
+    #region Shoot
     private void Shoot()
     {
         if (hasWaited)
@@ -111,6 +124,28 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+    #endregion
+
+    #region DoorsOpening
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            canOpenDoor = true;
+            canOpen = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            canOpen = false;
+            canOpenDoor = false;
+            canOpenDoorBool = false;
+        }
+    }
+    #endregion
 
     void FixedUpdate()
     {
@@ -136,11 +171,12 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
         yield return new WaitForSeconds(0.5f);
+        healthCanvas.SetActive(false);
         virtualCamera.SetActive(false);
         transform.position = deathPos;
         Camera.main.transform.position = defaultCameraPosition;
-        isEnabledCanvasOfDeath = true;
         deathCanvas.SetActive(true);
+        isEnabledCanvasOfDeath = true;
     }
 
     public void DamagePlayer(int damage)
@@ -148,23 +184,5 @@ public class PlayerController : MonoBehaviour
         health -= damage;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Door"))
-        {
-            canOpenDoor = true;
-            canOpen = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Door"))
-        {
-            canOpen = false;
-            canOpenDoor = false;
-            canOpenDoorBool = false;
-        }
-    }
 
 }
