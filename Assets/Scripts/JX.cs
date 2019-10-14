@@ -39,6 +39,18 @@ public class JX : MonoBehaviour
             Debug.Log(other.GetComponent<PlayerController>().health);
             StartCoroutine(DestroyJX());
         }
+        else if (other.CompareTag("Hejter"))
+        {
+
+        }
+        else if (other.CompareTag("Tilemap"))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DestroyJX()

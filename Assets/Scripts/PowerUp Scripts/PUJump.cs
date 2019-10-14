@@ -19,8 +19,16 @@ public class PUJump : MonoBehaviour
 
     public void Click()
     {
-        player.jumpSpeed += jumpMultiplier;
-        StartCoroutine(AnimatorOut());
+        if (PlayerController.howManyPowerUps > 0)
+        {
+            PlayerController.howManyPowerUps--;
+            player.jumpSpeed += jumpMultiplier;
+        }
+        else if (PlayerController.howManyPowerUps == 0)
+        {
+            player.jumpSpeed += jumpMultiplier;
+            StartCoroutine(AnimatorOut());
+        }
     }
 
     IEnumerator AnimatorOut()

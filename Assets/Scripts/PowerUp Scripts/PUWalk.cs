@@ -19,8 +19,16 @@ public class PUWalk : MonoBehaviour
 
     public void Click()
     {
-        player.moveSpeed += walkMultiplier;
-        StartCoroutine(AnimatorOut());
+        if (PlayerController.howManyPowerUps > 0)
+        {
+            PlayerController.howManyPowerUps--;
+            player.moveSpeed += walkMultiplier;
+        }
+        else if (PlayerController.howManyPowerUps == 0)
+        {
+            player.moveSpeed += walkMultiplier;
+            StartCoroutine(AnimatorOut());
+        }
     }
 
     IEnumerator AnimatorOut()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject deathCanvas, healthCanvas;
     [SerializeField] Animator[] powerUpButtons;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI coinText;
+    int currentSceneRunning;
     Vector2 deathPos = new Vector2(4, -10);
-    Vector3 offset = new Vector3(0, 0, 335);
     float dirX;
     public static bool isEnabledCanvasOfDeath = false;
     public bool faceRight = true;
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public static bool canOpenDoorBool = false;
     public bool canPowerUp = true;
     public static int killCount;
+    public static int coinCount = 0;
+    public static int howManyPowerUps = 0;
     bool canMove = true;
     bool oneTime;
 
@@ -41,14 +45,32 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        currentSceneRunning = SceneManager.GetActiveScene().buildIndex;
+        coinCount = 0;
         canPowerUp = true;
+        healthCanvas.SetActive(false);
+        healthCanvas.SetActive(true);
         isEnabledCanvasOfDeath = false;
-        deathCanvas.SetActive(false);
         oneTime = true;
         moveSpeed = 4;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         localScale = transform.localScale;
+        switch (currentSceneRunning)
+        {
+            case (5):
+                canMove = false;
+                break;
+        }
+
+        try
+        {
+            deathCanvas.SetActive(false);
+        }
+        catch
+        {
+            return;
+        }
     }
 
     void Update()
@@ -58,12 +80,20 @@ public class PlayerController : MonoBehaviour
         {
             foreach (Animator button in powerUpButtons)
             {
-                button.SetBool("anim", true);
+                try
+                {
+                    button.SetBool("anim", true);
+                }
+                catch
+                {
+                    return;
+                }
             }
         }
         #endregion
-        #region HealthTextUpdate
+        #region UITextUpdate
         healthText.text = health.ToString();
+        coinText.text = coinCount.ToString();
         #endregion
         #region Door Technique
         if (canOpenDoor)
@@ -88,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && myRigidbody2D.velocity.y == 0)
                 myRigidbody2D.AddForce(Vector2.up * jumpSpeed);
+
             if (Mathf.Abs(dirX) > 0 && myRigidbody2D.velocity.y == 0)
                 myAnimator.SetBool("isWalking", true);
             else
@@ -102,6 +133,20 @@ public class PlayerController : MonoBehaviour
         #endregion
         #region Shooting
         Shoot();
+        #endregion
+        #region CoinCheckForPowerUp
+        if (coinCount >= 5)
+        {
+            if (canPowerUp)
+            {
+                howManyPowerUps++;
+            }
+            else
+            {
+                canPowerUp = true;
+            }
+            coinCount = 0;
+        }
         #endregion
     }
 

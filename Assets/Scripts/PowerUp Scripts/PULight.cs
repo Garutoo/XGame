@@ -21,9 +21,18 @@ public class PULight : MonoBehaviour
 
     public void Click()
     {
-        lightMultiplier.globalLight.intensity += LightIntensityMultiplier;
-        StartCoroutine(AnimatorOut());
+        if (PlayerController.howManyPowerUps > 0)
+        {
+            PlayerController.howManyPowerUps--;
+            lightMultiplier.globalLight.intensity += LightIntensityMultiplier;
+        }
+        else if (PlayerController.howManyPowerUps == 0)
+        {
+            lightMultiplier.globalLight.intensity += LightIntensityMultiplier;
+            StartCoroutine(AnimatorOut());
+        }
     }
+
 
     IEnumerator AnimatorOut()
     {

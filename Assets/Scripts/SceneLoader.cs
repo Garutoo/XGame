@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     int currentSceneIndex;
     [SerializeField] GameObject[] buttons;
     Animator buttonAnimator;
+    [HideInInspector] public static bool canTitle = false;
 
     void Awake()
     {
@@ -67,14 +68,16 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadNextSceneRoutine()
     {
         transitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
+
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
     IEnumerator LoadScene(string scene)
     {
         transitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
+
         SceneManager.LoadScene(scene);
     }
     #endregion

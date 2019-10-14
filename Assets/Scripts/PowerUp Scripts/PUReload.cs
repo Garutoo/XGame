@@ -19,8 +19,16 @@ public class PUReload : MonoBehaviour
 
     public void Click()
     {
-        player.timeBetweenShots -= reloadMultiplier;
-        StartCoroutine(AnimatorOut());
+        if (PlayerController.howManyPowerUps > 0)
+        {
+            PlayerController.howManyPowerUps--;
+            player.timeBetweenShots -= reloadMultiplier;
+        }
+        else if (PlayerController.howManyPowerUps == 0)
+        {
+            player.timeBetweenShots -= reloadMultiplier;
+            StartCoroutine(AnimatorOut());
+        }
     }
     IEnumerator AnimatorOut()
     {

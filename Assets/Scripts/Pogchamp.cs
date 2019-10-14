@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Pogchamp : MonoBehaviour
 {
     [SerializeField] float speed = 1.5f;
+    [SerializeField] float timeUntilDestroy = 4f;
     bool canLeft = true;
     bool canRight = true;
     bool still = false;
@@ -11,6 +13,13 @@ public class Pogchamp : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        StartCoroutine(WaitToDestroy());
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        yield return new WaitForSeconds(timeUntilDestroy);
+        Destroy(gameObject);
     }
 
     void Update()
@@ -31,22 +40,6 @@ public class Pogchamp : MonoBehaviour
             canRight = false;
             still = true;
             transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (tag)
-        {
-            case ("Player"):
-                break;
-            case ("Enemy"):
-                break;
-            case ("Tilemap"):
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-
         }
     }
 }

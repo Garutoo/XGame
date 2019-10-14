@@ -37,7 +37,6 @@ public class Hejter : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("Damage");
             health -= damageForHejter;
-            Debug.Log(health);
         }
 
         else if (other.CompareTag("Player"))

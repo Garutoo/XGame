@@ -31,7 +31,7 @@ public class DoorScript : MonoBehaviour
             switch (currentScene)
             {
                 case ("Tutorial"):
-                    sceneLoader.LoadFirstLevel();
+                    sceneLoader.LoadNextScene();
                     break;
             }
         }

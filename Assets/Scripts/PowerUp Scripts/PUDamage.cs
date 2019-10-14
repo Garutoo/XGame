@@ -20,8 +20,16 @@ public class PUDamage : MonoBehaviour
 
     public void Click()
     {
-        player.hejterDamage += damageMultiplier;
-        StartCoroutine(AnimatorOut());
+        if (PlayerController.howManyPowerUps > 0)
+        {
+            PlayerController.howManyPowerUps--;
+            player.hejterDamage += damageMultiplier;
+        }
+        else if (PlayerController.howManyPowerUps == 0)
+        {
+            player.hejterDamage += damageMultiplier;
+            StartCoroutine(AnimatorOut());
+        }
     }
 
     IEnumerator AnimatorOut()
