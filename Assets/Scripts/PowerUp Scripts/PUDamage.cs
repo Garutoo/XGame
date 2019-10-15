@@ -22,8 +22,8 @@ public class PUDamage : MonoBehaviour
     {
         if (PlayerController.howManyPowerUps > 0)
         {
-            PlayerController.howManyPowerUps--;
             player.hejterDamage += damageMultiplier;
+            PlayerController.howManyPowerUps--;
         }
         else if (PlayerController.howManyPowerUps == 0)
         {

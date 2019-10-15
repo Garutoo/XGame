@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 canOpenDoorBool = true;
-                canOpenDoor = false;
             }
         }
         #endregion
@@ -229,11 +228,18 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(0.5f);
         healthCanvas.SetActive(false);
-        virtualCamera.SetActive(false);
         transform.position = deathPos;
         Camera.main.transform.position = defaultCameraPosition;
         deathCanvas.SetActive(true);
         isEnabledCanvasOfDeath = true;
+        try
+        {
+            virtualCamera.SetActive(false);
+        }
+        catch
+        {
+
+        }
     }
 
     public void DamagePlayer(int damage)

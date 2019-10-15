@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LoadSceneTimeline : MonoBehaviour
+public class LoadMainMenuTimeline : MonoBehaviour
 {
     SceneLoader sceneLoader;
 
@@ -13,7 +13,7 @@ public class LoadSceneTimeline : MonoBehaviour
     {
         if (isActiveAndEnabled)
         {
-            sceneLoader.LoadNextScene();
+            sceneLoader.LoadMainMenu();
         }
     }
 }

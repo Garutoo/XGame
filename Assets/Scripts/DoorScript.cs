@@ -6,9 +6,11 @@ public class DoorScript : MonoBehaviour
     SceneLoader sceneLoader;
     Animator animator;
     string currentScene;
+    bool isInRange = false;
 
     void Start()
     {
+        PlayerController.canOpen = false;
         animator = GetComponent<Animator>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         currentScene = SceneManager.GetActiveScene().name;
@@ -26,15 +28,25 @@ public class DoorScript : MonoBehaviour
             animator.SetBool("doorOpen", false);
         }
         #endregion
-        if (PlayerController.canOpenDoorBool)
+        if (PlayerController.canOpenDoorBool && isInRange == true)
         {
-            switch (currentScene)
-            {
-                case ("Tutorial"):
-                    sceneLoader.LoadNextScene();
-                    break;
-            }
+            sceneLoader.LoadNextScene();
+            PlayerController.canOpenDoorBool = false;
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isInRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isInRange = false;
+            PlayerController.canOpen = false;
+        }
+    }
 }

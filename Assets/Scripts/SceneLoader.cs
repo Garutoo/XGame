@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -43,7 +44,7 @@ public class SceneLoader : MonoBehaviour
             buttonAnimator.SetTrigger("end");
         }
 
-        StartCoroutine(LoadScene("Tutorial"));
+        StartCoroutine(LoadScene("Level 1 Cutscene"));
     }
 
     public void LoadFirstLevel()
@@ -68,7 +69,7 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadNextSceneRoutine()
     {
         transitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
 
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
@@ -76,7 +77,7 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadScene(string scene)
     {
         transitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
 
         SceneManager.LoadScene(scene);
     }

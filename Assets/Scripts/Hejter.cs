@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Hejter : MonoBehaviour
 {
@@ -13,20 +13,25 @@ public class Hejter : MonoBehaviour
     [SerializeField] float maxSpeed = 5;
     [SerializeField] ParticleSystem deathParticle;
     [SerializeField] GameObject healthBar1, healthBar2, healthBar3, healthBar4, healthBar5, healthBar6, healthBar7, healthBar8;
-    [SerializeField] GameObject ufSound;
     GameObject target;
+    SceneLoader sceneLoader;
     Vector3 currentTarget;
     Vector2 playerPos;
     Vector2 myPos;
     Vector2 jxMovePos;
+    Vector3 localScale;
     public static bool isRight;
     bool canShoot = true;
     bool canMove = true;
     float distance;
     int damageForHejter;
+    int currentSceneIndex;
     PlayerController player;
     void Start()
     {
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        localScale = transform.localScale;
         player = FindObjectOfType<PlayerController>();
         transform.position = waypoint1.transform.position;
         target = GameObject.FindGameObjectWithTag("Player");
@@ -129,10 +134,14 @@ public class Hejter : MonoBehaviour
         #region Movement
         if (transform.position == waypoint1.position)
         {
+            localScale.x = 1;
+            transform.localScale = localScale;
             currentTarget = waypoint2.position;
         }
         else if (transform.position == waypoint2.position)
         {
+            localScale.x = -1;
+            transform.localScale = localScale;
             currentTarget = waypoint1.position;
         }
 
@@ -148,9 +157,18 @@ public class Hejter : MonoBehaviour
         #region Death
         if (health <= 0)
         {
-            PlayerController.killCount++;
-            ParticleSystem deathParticleGO = Instantiate(deathParticle, transform.position, Quaternion.identity) as ParticleSystem;
-            Destroy(gameObject);
+            if (currentSceneIndex == 8)
+            {
+                sceneLoader.LoadNextScene();
+                Destroy(gameObject);
+            }
+            else
+            {
+                PlayerController.killCount++;
+                ParticleSystem deathParticleGO = Instantiate(deathParticle, transform.position, Quaternion.identity) as ParticleSystem;
+                Destroy(gameObject);
+            }
+
         }
         #endregion
     }
